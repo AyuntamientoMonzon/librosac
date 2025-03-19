@@ -91,11 +91,7 @@ public  final class ConectorDB {
    * @throws java.sql.SQLException si ocurre un error al verificar la conexion
    */
    public boolean isConected() throws SQLException{
-    if (!conn.isClosed()) {
-        return true;
-    } else {
-        return false;
-    }
+        return !conn.isClosed();
    }
    /**
    *
@@ -295,7 +291,7 @@ public  final class ConectorDB {
             }
             rs.close();
             stmt.close();
-            return datalist.toArray(new String[0]);
+            return datalist.toArray(String[]::new);
         }catch(SQLException e){
             JOptionPane.showMessageDialog(null, "Error de lectura de datos   ", "Error Base Datos", JOptionPane.WARNING_MESSAGE);
             return null;
